@@ -20,7 +20,7 @@ namespace Crud_Renovare
 
         SqlConnection sqlCon = null;
 
-        private string strCon = @"Integrated Security=SSPI;Persist Security Info=False;User ID=sa;Initial Catalog=Augusta;Data Source=BEATRIZCAMARA\SQLSERVER";
+        private string strCon = @"Integrated Security=SSPI;Persist Security Info=False;User ID=sa;Initial Catalog=Augusta;Data Source=BEATRIZCAMARA\SQLSERVER"; // Necessária alteração para a conexão do banco de dados utilizado
 
         private string strSql = string.Empty;
 
@@ -174,19 +174,7 @@ namespace Crud_Renovare
             cmbQuartos.Enabled = true;
             cmbBanheiros.Enabled = true;
             cmbVagas.Enabled = true;
-           /* txtId.Clear();
-            cmbTipo.Text = "";
-            cmbModalidade.Text = "";
-            txtEndereco.Clear();
-            txtNumero.Clear();
-            txtComplemento.Clear();
-            mskCep.Clear();
-            txtCidade.Clear();
-            cmbUf.Text = "";
-            txtArea.Clear();
-            cmbQuartos.Text = "";
-            cmbBanheiros.Text = "";
-            cmbVagas.Text = "";*/
+
         }
 
         private void tsbEditar_Click(object sender, EventArgs e)
