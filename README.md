@@ -3,8 +3,8 @@
 ![TelaInicialProjeto](https://user-images.githubusercontent.com/112721730/189239728-b3be845c-cac4-4d64-8752-5d7c088f482c.png)
 
 ## 💻 Sobre o projeto
-Desenvolvimento de um projeto CRUD dotNet Básico utilizando o acesso ao banco de dados SQL e linguagem C#.
-Este tem como objetivo cadastrar imóveis para empresas imobiliárias auxiliares.
+Desenvolvimento de um projeto CRUD dotNet Básico utilizando o acesso ao banco de dados SQL e linguagem C#.<br>
+Este tem como objetivo cadastrar imóveis para auxiliar empresas imobiliárias.
 
 ## 🚀 Começando
 
@@ -34,5 +34,5 @@ create table Renovare(
 [Banheiros] int not null);
 ```
 ## ✒️ Criação
-Desenvolvido por: Augusta Ramos Pires
+Desenvolvido por: Augusta Ramos Pires<br>
 Data: 08/09/2022
