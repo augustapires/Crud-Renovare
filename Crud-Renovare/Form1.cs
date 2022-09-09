@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Crud_Renovare
 {
@@ -27,13 +28,13 @@ namespace Crud_Renovare
         private void tsbSalvar_Click(object sender, EventArgs e)
         {
 
-            strSql = "insert into Renovare (Tipo, Modalidade, Endereco, Numero, Complemento, CEP, Cidade, UF, Area, Quartos, Banheiros, Vagas) values (@Tipo, @Modalidade, @Endereco, @Numero, @Complemento, @CEP, @Cidade, @UF, @Area, @Quartos, @Banheiros, @Vagas)";
+            strSql = "insert into ImoveisRenovare (ID, Tipo, Modalidade, Endereco, Numero, Complemento, CEP, Cidade, UF, Area, Quartos, Banheiros, Vagas) values (@ID, @Tipo, @Modalidade, @Endereco, @Numero, @Complemento, @CEP, @Cidade, @UF, @Area, @Quartos, @Banheiros, @Vagas)";
 
             sqlCon = new SqlConnection(strCon);
 
             SqlCommand comando = new SqlCommand(strSql, sqlCon);
 
-            //comando.Parameters.Add("ID", SqlDbType.Int).Value = txtId.Text;
+            comando.Parameters.Add("ID",SqlDbType.Int).Value = txtId.Text;
             comando.Parameters.Add("Tipo", SqlDbType.VarChar).Value = cmbTipo.Text;
             comando.Parameters.Add("Modalidade", SqlDbType.VarChar).Value = cmbModalidade.Text;
             comando.Parameters.Add("Endereco", SqlDbType.VarChar).Value = txtEndereco.Text;
@@ -46,6 +47,8 @@ namespace Crud_Renovare
             comando.Parameters.Add("Quartos", SqlDbType.Int).Value = cmbQuartos.Text;
             comando.Parameters.Add("Banheiros", SqlDbType.Int).Value = cmbBanheiros.Text;
             comando.Parameters.Add("Vagas", SqlDbType.Int).Value = cmbVagas.Text;
+
+
 
             try
             {
@@ -84,6 +87,8 @@ namespace Crud_Renovare
             cmbQuartos.Enabled = false;
             cmbBanheiros.Enabled = false;
             cmbVagas.Enabled = false;
+
+
             txtId.Clear();
             cmbTipo.Text = "";
             cmbModalidade.Text = "";
@@ -98,7 +103,7 @@ namespace Crud_Renovare
             cmbBanheiros.Text = "";
             cmbVagas.Text = "";
         }
-
+  
         private void comboBox4_SelectedIndexChanged(object sender, EventArgs e)
         {
 
@@ -106,7 +111,7 @@ namespace Crud_Renovare
 
         private void tsbBuscar_Click(object sender, EventArgs e)
         {
-            strSql = "select * from Renovare where ID = @ID";
+            strSql = "select * from ImoveisRenovare where ID = @ID";
 
             sqlCon = new SqlConnection(strCon);
 
@@ -132,7 +137,7 @@ namespace Crud_Renovare
                 dr.Read();
 
                 txtId.Text = Convert.ToString(dr["ID"]);
-               cmbTipo.Text = Convert.ToString(dr["Tipo"]);
+                cmbTipo.Text = Convert.ToString(dr["Tipo"]);
                 cmbModalidade.Text = Convert.ToString(dr["Modalidade"]);
                 txtEndereco.Text = Convert.ToString(dr["Endereco"]);
                 txtNumero.Text = Convert.ToString(dr["Numero"]);
@@ -179,7 +184,7 @@ namespace Crud_Renovare
 
         private void tsbEditar_Click(object sender, EventArgs e)
         {
-            strSql = "update Renovare set Tipo = @Tipo, Modalidade = @Modalidade, Endereco = @Endereco, Numero = @Numero, Complemento = @Complemento, CEP = @CEP, Cidade = @Cidade, UF = @UF, Area = @Area, Quartos = @Quartos, Banheiros = @Banheiros, Vagas = @Vagas where ID = @IdBuscar";
+            strSql = "update ImoveisRenovare set Tipo = @Tipo, Modalidade = @Modalidade, Endereco = @Endereco, Numero = @Numero, Complemento = @Complemento, CEP = @CEP, Cidade = @Cidade, UF = @UF, Area = @Area, Quartos = @Quartos, Banheiros = @Banheiros, Vagas = @Vagas where ID = @IdBuscar";
             sqlCon = new SqlConnection(strCon);
 
             SqlCommand comando = new SqlCommand(strSql, sqlCon);
@@ -258,7 +263,7 @@ namespace Crud_Renovare
             }
             else
             {
-                strSql = "delete from Renovare where ID = @IdBuscar";
+                strSql = "delete from ImoveisRenovare where ID = @IdBuscar";
 
                 sqlCon = new SqlConnection(strCon);
 
@@ -318,15 +323,21 @@ namespace Crud_Renovare
             }
         }
 
+        int contador = 0;
+
         private void tsbNovo_Click(object sender, EventArgs e)
         {
+
+            this.contador++;
+            this.txtId.Text = this.contador.ToString().PadLeft(2, '0');
+
             tsbNovo.Enabled = false;
             tsbSalvar.Enabled = true;
             tsbEditar.Enabled = false;
             tsbExcluir.Enabled = false;
-            tsbBuscar.Enabled = false;
-            tstIdBuscar.Enabled = false;
-            txtId.Enabled = false;
+            tsbBuscar.Enabled = true;
+            tstIdBuscar.Enabled = true;
+            txtId.Enabled = true;
             cmbTipo.Enabled = true;
             cmbModalidade.Enabled = true;
             txtEndereco.Enabled = true;
@@ -339,7 +350,6 @@ namespace Crud_Renovare
             cmbQuartos.Enabled = true;
             cmbBanheiros.Enabled = true;
             cmbVagas.Enabled = true;
-            txtId.Clear();
             cmbTipo.Text = "";
             cmbModalidade.Text = "";
             txtEndereco.Clear();
@@ -358,6 +368,7 @@ namespace Crud_Renovare
 
         private void Form1_Load(object sender, EventArgs e)
         {
+          
             tsbNovo.Enabled = true;
             tsbSalvar.Enabled = false;
             tsbEditar.Enabled = false;
@@ -377,6 +388,8 @@ namespace Crud_Renovare
             cmbQuartos.Enabled = false;
             cmbBanheiros.Enabled = false;
             cmbVagas.Enabled = false;
+
+
         }
     }
 }
